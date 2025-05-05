@@ -2,7 +2,6 @@ import mouse
 import time
 import random
 import keyboard
-from threading import Thread
 import sys
 from screeninfo import get_monitors
 
@@ -50,7 +49,7 @@ def generate_map(min_range, max_range,time):
     
 
 def run():
-    while True:
+    while not keyboard.is_pressed('esc'):
         min_range = -200
         max_range = 200
         min_time = 5
@@ -64,10 +63,7 @@ def run():
 
 
 if __name__ == '__main__':
-    thread = Thread(target=run)
-    thread.daemon = True
-    thread.start()
     print("Mouse move is running")
-    keyboard.wait('esc')
+    run()
     print('Quit program')
     sys.exit()
